@@ -73,10 +73,14 @@
                	});
 
                	//Add results to dom
-		for (var i=0, len=noscripts.length; i<len; i++) {
+               	var i=0, len=noscripts.length;
+               	
+		while (i<len) {
 			var noscript = noscripts[i];
 
 			if (options.viewport === 'none')  $(noscript[0]).replaceWith(noscript[1]);
+
+			i++
 		}
 
 		return this;

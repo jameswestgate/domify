@@ -9,10 +9,16 @@
 	<script type="text/javascript" src="../src/domify.js"></script>
 	<script type="text/javascript" src="../qunit/qunit.js"></script>
 	<script type="text/javascript" src="test.js"></script>
+
+	<style>
+		.qunit-fixture {
+			visibility: hidden;
+		}
+	</style>
 </head>
 <body>
 	<div id="qunit"></div>
-	<div id="qunit-fixture1">
+	<div id="qunit-fixture1" class="qunit-fixture">
 		<noscript>
 			<span>test markup</span>
 		</noscript>
