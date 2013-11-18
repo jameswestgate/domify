@@ -76,7 +76,7 @@
 		for (var i=0, len=noscripts.length; i<len; i++) {
 			var noscript = noscripts[i];
 
-			if (options.viewport === 'none')  $(noscript[0]).replaceWith($.parseHtml(noscript(1));
+			if (options.viewport === 'none')  $(noscript[0]).replaceWith(noscript[1]);
 		}
 
 		return this;
