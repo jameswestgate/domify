@@ -39,68 +39,47 @@
 /* jQuery plugin */
 (function($){
 
-	//Reads into noscript nodes and creates dom fragments
-	//Replaces, appends or prepends the selected content either straight away, 
+	//Reads into noscript nodes and replaces them with selected content either straight away, 
 	//or when  scrolled into view,  or after page load
 		
                 $.fn.domify = function(options, callback) {
 
-                              //Ensure options are valid
-                              options.method = options.method || 'append';  //append, prepend or replace
-                              options.viewport = options.viewport || 'none';  // none/false, scroll, load'
+                	//Parameter validation
+                	if (arguments.length === 0) {
+                		options = {};
+                		callback = null;
+                	} 
 
-                             //Add outer loop for comma seperated selectors
-                	
-                	//Split selector into noscript selections and validate
-                	var split = this.selector.split(' ');
-                	var left, right, flag = true;
-
-                	for (var i=0, len=split.length;i<len) {
-                		
-                		token = split[i];
-
-                		if (flag) {
-                			left += token + ' ';
-                			flag = token.substring(0,8).toLowerCase() === 'noscript';
-                		}
-                		else {
-                			right += token + ' ';
-                		}
+	                if (arguments.length === 1) {
+                		callback = options;
+                		options = {};
                 	}
 
+                              options.viewport = options.viewport || 'none';  // none/false, scroll, load'
+                              options.viewport =  options.viewport.toLowerCase();
 
-                	var results = this;
                 	var noscripts = [];
 
 	               //Now loop through each noscript tag
-                	$(left).each(function() {
+                	this.each(function() {
 
                 		//Get text content of noscript tag
-                		var elements = $(this.textContent).find(right);
+                		var elements = $(this.textContent);
 
                 		//Loop through each element in the fragment
-                		elements.each(callback);
+                		if (callback) elements.each(callback);
                 			
-                		//Add to results for chaining
-                		results.add(elements);
-
-                		noscripts.push({parent: $(this), elements: elements});
-               	}
+                		noscripts.push([this, elements]);
+               	});
 
                	//Add results to dom
-            		if (options.viewport.toLowerCase() === 'none') addToDom();
+		for (var i=0, len=noscripts.length; i<len; i++) {
+			var noscript = noscripts[i];
 
-		return results;
-
-
-		function addToDom() {
-
-			for (var i=0, len=noscripts.length; i<len; i++) {
-				var noscript = noscripts[i];
-
-				
-			}
+			if (options.viewport === 'none')  $(noscript[0]).replaceWith($.parseHtml(noscript(1));
 		}
+
+		return this;
 	};
 	
 })(jQuery);
