@@ -13,14 +13,38 @@ test('noscript tag content', function() {
 
 module('plug-in tests');
 
-test('noscript tag replacement', function() {
+$(document).ready(function() {
 
-	$(document).ready(function() {
+	test('noscript tag replacement', function() {
 
 		ok($.fn.domify, 'domify plug-in not found.');
 		$('#qunit-fixture1 noscript').domify();
 
 		ok($('#qunit-fixture1 span').length, 'fixture 1 added to dom');
+	});
+
+	test('noscript tag 2 callback', function() {
+
+		var flag;
+
+		$('#qunit-fixture2 noscript').domify(function() {
+			flag = true;
+			$(this).wrap('<p></p>');
+		});
+
+		ok(flag, 'callback called');
+		ok($('#qunit-fixture2 p > span').length, 'fixture 2  added to dom with wrap');
+	});
+
+	test('noscript tag 3 callback', function() {
+
+		var flag;
+
+		$('#qunit-fixture3 noscript').domify(function() {
+			$(this).find('span').text('updated');
+		});
+
+		ok($('#qunit-fixture2 span').text() === 'updated', 'fixture 3  added to dom with text update');
 	});
 });
 

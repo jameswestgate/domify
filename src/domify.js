@@ -64,17 +64,22 @@
                 	this.each(function() {
 
                 		//Get text content of noscript tag
-                		var elements = $(this.textContent);
+                		var fragment = $(this.textContent);
 
-                		//Loop through each element in the fragment
-                		if (callback) elements.each(callback);
+                		//Apply the callback to the fragment
+                		//Make sure the results are updated accordingly
+                		if (callback) fragment.each(function() {
+
+                			var result = callback.apply(this);
+                			if (result) fragment = result;
+            			});
                 			
-                		noscripts.push([this, elements]);
+                		noscripts.push([this, fragment]);
                	});
 
                	//Add results to dom
                	var i=0, len=noscripts.length;
-               	
+
 		while (i<len) {
 			var noscript = noscripts[i];
 
