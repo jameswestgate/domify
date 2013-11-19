@@ -68,11 +68,7 @@
 
                 		//Apply the callback to the fragment
                 		//Make sure the results are updated accordingly
-                		if (callback) fragment.each(function() {
-
-                			var result = callback.apply(this);
-                			if (result) fragment = result;
-            			});
+                		if (callback) callback.call(fragment);
                 			
                 		noscripts.push([this, fragment]);
                	});

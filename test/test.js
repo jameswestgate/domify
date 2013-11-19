@@ -41,10 +41,10 @@ $(document).ready(function() {
 		var flag;
 
 		$('#qunit-fixture3 noscript').domify(function() {
-			$(this).find('span').text('updated');
+			$(this).text('updated');
 		});
 
-		ok($('#qunit-fixture2 span').text() === 'updated', 'fixture 3  added to dom with text update');
+		ok($('#qunit-fixture3 span').text() === 'updated', 'fixture 3  added to dom with text update');
 	});
 });
 
