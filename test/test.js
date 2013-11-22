@@ -30,6 +30,7 @@ $(document).ready(function() {
 		$('#qunit-fixture2 noscript').domify(function() {
 			flag = true;
 			$(this).wrap('<p></p>');
+			return $(this).parent();
 		});
 
 		ok(flag, 'callback called');
@@ -45,6 +46,11 @@ $(document).ready(function() {
 		});
 
 		ok($('#qunit-fixture3 span').text() === 'updated', 'fixture 3  added to dom with text update');
+	});
+
+	test('noscript multiple tags', function() {
+
+		ok(false, 'select multiple noscript tags');
 	});
 });
 

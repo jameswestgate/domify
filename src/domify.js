@@ -41,46 +41,35 @@
 
 	//Reads into noscript nodes and replaces them with selected content either straight away, 
 	//or when  scrolled into view,  or after page load
-		
-                $.fn.domify = function(options, callback) {
+                $.fn.domify = function(callback) {
 
-                	//Parameter validation
-                	if (arguments.length === 0) {
-                		options = {};
-                		callback = null;
-                	} 
+	             	var noscripts = [], fragment;
 
-	                if (arguments.length === 1) {
-                		callback = options;
-                		options = {};
-                	}
-
-                              options.viewport = options.viewport || 'none';  // none/false, scroll, load'
-                              options.viewport =  options.viewport.toLowerCase();
-
-                	var noscripts = [];
+	             	//Validate parms
+	             	if (typeof callback !== 'function') callback = null;
 
 	               //Now loop through each noscript tag
                 	this.each(function() {
 
                 		//Get text content of noscript tag
-                		var fragment = $(this.textContent);
+                		fragment = $(this.textContent);
 
                 		//Apply the callback to the fragment
                 		//Make sure the results are updated accordingly
-                		if (callback) callback.call(fragment);
+                		if (callback) {
+                			var result = callback.call(fragment);
+                			if (result) fragment = result;
+                		}
                 			
                 		noscripts.push([this, fragment]);
                	});
 
-               	//Add results to dom
-               	var i=0, len=noscripts.length;
+                	//Add to dom
+           		var i=0, len=noscripts.length, noscript;
 
 		while (i<len) {
-			var noscript = noscripts[i];
-
-			if (options.viewport === 'none')  $(noscript[0]).replaceWith(noscript[1]);
-
+			noscript = noscripts[i];
+			 $(noscript[0]).replaceWith(noscript[1]);
 			i++
 		}
 
