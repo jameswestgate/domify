@@ -6,7 +6,7 @@ The &lt;noscript&gt; tags are replaced by document fragments which can be  proce
 
 ***Usage:***
 
-```html```
+```html
 <noscript>
 	<img src="/img/small-image.jpg"/>
 </noscript>
