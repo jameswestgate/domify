@@ -3,9 +3,9 @@
     "title": "jQuery Domify",
     "description": "A jquery plug-in to encourage progressive enhancement of markup inside <noscript> tags.",
     "keywords": [
-        "progressive enhancement",
+        "progressive",
         "noscript",
-        "responsive design",
+        "responsive",
         "image"
     ],
     "version": "1.0.0",
