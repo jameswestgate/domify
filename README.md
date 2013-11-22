@@ -2,7 +2,7 @@ domify
 ======
 
 A jquery plug-in to encourage progressive enhancement of markup inside &lt;noscript&gt; tags. 
-The &lt;noscript&gt; tags are replaced by document fragments which canbe  processed by a callback function before being added to the dom. 
+The &lt;noscript&gt; tags are replaced by document fragments which can be  processed by a callback function before being added to the dom. 
 
 ***Usage:***
 
