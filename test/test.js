@@ -50,7 +50,9 @@ $(document).ready(function() {
 
 	test('noscript multiple tags', function() {
 
-		ok(false, 'select multiple noscript tags');
+		$('#qunit-fixture4 noscript').domify();
+
+		ok($('#qunit-fixture4 span').length === 3, 'select multiple noscript tags');
 	});
 });
 
